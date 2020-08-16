@@ -151,8 +151,6 @@ class Dataset:
 
         perc_testes = [perc_teste_pcr, perc_teste_anticorpo, perc_teste_antigeno, perc_teste_igm, perc_teste_igg]
 
-        print(nome_testes, qtde_testes, perc_testes)
-
         return nome_testes, qtde_testes, perc_testes
 
     def letalidade(self, data):
@@ -160,5 +158,15 @@ class Dataset:
         total_mortos = data.loc[data['_conclusao'] == 'Óbito']
         taxa = (total_mortos.shape[0]/confirmed_cases.shape[0])*100
         return taxa
+
+    def correlacao(self, data):
+        possible_values = data[['_idade', '_classificacao']]
+        confirmed_values = possible_values.loc[possible_values['_classificacao'] == 'Confirmado']
+
+        idades = confirmed_values.groupby('_idade')['_classificacao'].value_counts().reset_index(name='_qtde')
+
+        correl = idades['_idade'].corr(idades['_qtde'])     
+
+        return correl
 
 data = Dataset()
