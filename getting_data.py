@@ -58,7 +58,7 @@ class Dataset:
         return cleaned_data, after_clean_number
 
     def recovered_percentage(self, data):
-        # Poercentagem de individuos recuperados em relação a todos os casos confirmados
+        # Porcentagem de individuos recuperados em relação a todos os casos confirmados
         possible_values = list(data['_conclusao'])
         keys = Counter(possible_values).keys()
         values = Counter(possible_values).values()
@@ -113,5 +113,52 @@ class Dataset:
         print(f'Os 3 maiores: {sorted_neighbors}')
         #return most_affected
         return sorted_neighbors
+
+    def media_desviopadrao_idade(self, data):
+        possible_values = data[['_idade', '_classificacao']]
+        confirmed_values = possible_values.loc[possible_values['_classificacao'] == 'Confirmado']
+        
+        idades = confirmed_values['_idade']
+
+        desvio_padrao = confirmed_values['_idade'].std()
+        media = confirmed_values['_idade'].mean()
+        menor = confirmed_values['_idade'].min()
+        maior = confirmed_values['_idade'].max()
+
+        return desvio_padrao, media, menor, maior
+
+    def testes(self, data):
+        # Quantidade de cada tipo de teste
+        total_teste_pcr = data['_teste_pcr'].sum()
+        total_teste_anticorpo = data['_teste_anticorpo'].sum()
+        total_teste_antigeno = data['_teste_antigeno'].sum()
+        total_teste_igm = data['_teste_igm'].sum()
+        total_teste_igg = data['_teste_igg'].sum()
+
+        nome_testes = ['_teste_pcr', '_teste_anticorpo', '_teste_antigeno', '_teste_igm', '_teste_igg']
+
+        qtde_testes = [total_teste_pcr, total_teste_anticorpo, total_teste_antigeno, total_teste_igm, total_teste_igg]
+
+        # Total de testes realizados
+        total_testes_realizados = total_teste_pcr + total_teste_anticorpo + total_teste_antigeno + total_teste_igm + total_teste_igg
+
+        # Porcentagem de cada tipo de teste com relacao ao total de testes realizados
+        perc_teste_pcr = (total_teste_pcr/total_testes_realizados) * 100
+        perc_teste_anticorpo = (total_teste_anticorpo/total_testes_realizados) * 100
+        perc_teste_antigeno = (total_teste_antigeno/total_testes_realizados) * 100
+        perc_teste_igm = (total_teste_igm/total_testes_realizados) * 100
+        perc_teste_igg = (total_teste_igg/total_testes_realizados) * 100
+
+        perc_testes = [perc_teste_pcr, perc_teste_anticorpo, perc_teste_antigeno, perc_teste_igm, perc_teste_igg]
+
+        print(nome_testes, qtde_testes, perc_testes)
+
+        return nome_testes, qtde_testes, perc_testes
+
+    def letalidade(self, data):
+        confirmed_cases = data.loc[data['_classificacao'] == 'Confirmado']
+        total_mortos = data.loc[data['_conclusao'] == 'Óbito']
+        taxa = (total_mortos.shape[0]/confirmed_cases.shape[0])*100
+        return taxa
 
 data = Dataset()
