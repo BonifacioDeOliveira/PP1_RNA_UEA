@@ -1,4 +1,4 @@
-# Este repositório foi criado para armazenar os códigos fontes do primeiro projeto prático da disciplina "Redes Neurais Artificiais" 2020.1
+### Este repositório foi criado para armazenar os códigos fontes do primeiro projeto prático da disciplina "Redes Neurais Artificiais" 2020.1
 
 Equipe: Rafaela Melo, Bonifácio de Oliveira, Luiz Felipe, Luiz Fabio e Lucas Araújo
 
