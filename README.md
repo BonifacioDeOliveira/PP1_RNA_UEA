@@ -4,6 +4,8 @@ Equipe: Rafaela Melo, Bonifácio de Oliveira, Luiz Felipe, Luiz Fabio e Lucas Ar
 
 # Arquivos
 
+- O Dataset utilizado foi o "Manaus.csv"
+
 Os problemas propostos pelo projeto prático foram alocados da seguinte forma: 1) Problemas da seção 2.1; e 2) Problemas da seção 2.2.
 
 - 1) Problemas da seção 2.1
