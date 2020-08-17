@@ -15,7 +15,8 @@ class Dataset:
         #self.min_max_dates(self.original_dataset)
         self.cleaned_data, self.after_clean_number = self.clean_data(self.original_dataset)
         #self.recovered_percentage(self.cleaned_data)
-        self.m_and_f_confirmed_percentage(self.cleaned_data)
+        #list_keys, list_values, most_affectec_sex = self.m_and_f_confirmed_percentage(self.cleaned_data)
+        #most_affected_neighbor = self.most_affected_neighborhood(self.cleaned_data)
 
     def get_data(self):
         request = requests.get('https://covid19.manaus.am.gov.br/wp-content/uploads/Manaus.csv', verify=False)
@@ -78,10 +79,21 @@ class Dataset:
         bigger_values = max(m_f_values)
         index = m_f_values.index(bigger_values)
         most_affected = m_f_keys[index]
-        
-        print(f'Os casos acometeram mais {most_affected}')
+        print(f'Os casos acometeram mais: {most_affected}')
+        return m_f_keys, m_f_values, most_affected
 
-
-
+    def most_affected_neighborhood(self, data):
+        possible_values = list(data['_bairro'])
+        keys = Counter(possible_values).keys()
+        values = Counter(possible_values).values()
+        print(keys)
+        print(values)
+        neighbor_keys = list(keys)
+        neighbor_values = list(values)
+        bigger_values = max(neighbor_values)
+        index = neighbor_values.index(bigger_values)
+        most_affected = neighbor_keys[index]
+        print(f'O bairro mais afetado foi: {most_affected}')
+        return most_affected
 
 data = Dataset()
