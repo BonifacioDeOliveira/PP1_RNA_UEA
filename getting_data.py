@@ -17,6 +17,7 @@ class Dataset:
         #self.recovered_percentage(self.cleaned_data)
         #list_keys, list_values, most_affectec_sex = self.m_and_f_confirmed_percentage(self.cleaned_data)
         #most_affected_neighbor = self.most_affected_neighborhood(self.cleaned_data)
+        #three_most_recoverd_neighbors = self.three_neighbors_most_recovered_cases(self.cleaned_data)
 
     def get_data(self):
         request = requests.get('https://covid19.manaus.am.gov.br/wp-content/uploads/Manaus.csv', verify=False)
@@ -86,8 +87,8 @@ class Dataset:
         possible_values = list(data['_bairro'])
         keys = Counter(possible_values).keys()
         values = Counter(possible_values).values()
-        print(keys)
-        print(values)
+        #print(keys)
+        #print(values)
         neighbor_keys = list(keys)
         neighbor_values = list(values)
         bigger_values = max(neighbor_values)
@@ -95,5 +96,22 @@ class Dataset:
         most_affected = neighbor_keys[index]
         print(f'O bairro mais afetado foi: {most_affected}')
         return most_affected
+
+    def three_neighbors_most_recovered_cases(self, data):
+        possible_values = data[['_bairro', '_conclusao']]
+        recovered_values = possible_values.loc[possible_values['_conclusao'] == 'Recuperado']
+        #print(recovered_values.head())
+        recovered_neighbors = recovered_values['_bairro']
+        keys = Counter(recovered_neighbors).keys()
+        values = Counter(recovered_neighbors).values()
+        #print(keys)
+        #print(values)
+        neighbor_keys = list(keys)
+        neighbor_values = list(values)
+        print(neighbor_keys, neighbor_values)
+        sorted_neighbors = sorted(list(zip(neighbor_values, neighbor_keys)), reverse=True)[:3]
+        print(f'Os 3 maiores: {sorted_neighbors}')
+        #return most_affected
+        return sorted_neighbors
 
 data = Dataset()
