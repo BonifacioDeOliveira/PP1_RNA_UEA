@@ -26,11 +26,11 @@
 \maketitle
 
 \begin{abstract}
-This technical report describes the data analysis process for COVID-19 in Amazonas, through exploratory analysis and data visualization.
+This technical report describes the data analysis process for COVID-19 in Amazonas, showing statistical data on the situation in the state in the context of the pandemic, the main social groups affected, the period of greatest cases and examples of how machine learning can be used to help overcome the pandemic.
 \end{abstract}
      
 \begin{resumo} 
-  Este relatório técnico descreve o processo de análise de dados referentes ao COVID-19 no Amazonas, por meio de análise exploratória e visualização de dados.
+  Este relatório técnico descreve o processo de análise de dados referentes ao COVID-19 no Amazonas, mostrando dados estatísticos da situação no estado no contexto da pandemia, os principais grupos sociais afetados, o período de maiores casos e exemplos de como o aprendizado de máquina pode ser utilizado para auxiliar na superação da pandemia.
 \end{resumo}
 
 \section{Introdução}
@@ -39,19 +39,19 @@ O presente relatório tem como objetivo apresentar uma análise exploratória de
 \section{Visão Geral dos Casos Confirmados}
 % questoes 1, 2 e 3
 
-O dataset apresenta 40 atributos, são eles: idade, faixa etária, sexo, bairro, classificacao, comorb\_renal, comorb\_diabetes, comorb\_imuno, comorb\_cardio, conclusao, dt\_notificacao, taxa, dt\_evolucao, raca, dt\_sintomas, criterio, sintoma\_garganta, sintoma\_dispneia, sintoma\_febre, sintoma\_tosse, sintoma\_outros, etnia, profiss\_saude, srag, se\_notificacao, distrito, bairro\_mapa, comorb\_respiratoria, comorb\_cromossomica, comorb\_hepatica, comorb\_neurologica, comorb\_hemato, comorb\_obessidade, origem, evolução, teste\_pcr, teste\_anticorpo, teste\_antigeno, teste\_igm e teste\_igg. Em Manaus, há 39037 casos confirmados, o caso mais antigo é datado em 01/04/2020 e o mais recente em 12/08/2020.
+O dataset apresenta 40 atributos, são eles: idade, faixa etária, sexo, bairro, classificacao, comorb\_renal, comorb\_diabetes, comorb\_imuno, comorb\_cardio, conclusao, dt\_notificacao, taxa, dt\_evolucao, raca, dt\_sintomas, criterio, sintoma\_garganta, sintoma\_dispneia, sintoma\_febre, sintoma\_tosse, sintoma\_outros, etnia, profiss\_saude, srag, se\_notificacao, distrito, bairro\_mapa, comorb\_respiratoria, comorb\_cromossomica, comorb\_hepatica, comorb\_neurologica, comorb\_hemato, comorb\_obessidade, origem, evolução, teste\_pcr, teste\_anticorpo, teste\_antigeno, teste\_igm e teste\_igg. Em Manaus, há 38347 casos confirmados, o caso mais antigo é datado em 16/02/2020 e o mais recente em 12/08/2020.
 
 % questao 1
 
-Considerando a tarefa de análise proposta, foi realizada uma limpeza nos dados retirando atributos que não influenciam nos resultados e as linhas que não continham todos os dados preenchidos. Após a limpeza e organização restaram 11 atributos e 54782 exemplos, classificados em: 14226 casos em análise, 31942 casos descartados e 8614 casos confirmados.
+Considerando a tarefa de análise proposta, foi realizada uma limpeza nos dados retirando atributos que não influenciam nos resultados e as linhas que não continham todos os dados preenchidos. Após a limpeza e organização restaram 12 atributos e 54659 exemplos, classificados em: 14262 casos em análise, 32056 casos descartados e 8341 casos confirmados.
 
 % questao 2, 3, 4
 
-Os números apresentados a partir daqui são referentes ao dataset resultante após a limpeza e organização dos dados. Do total de 8614 casos confirmados, 94.87\% das pessoas se recuperaram. O número de casos no sexo feminino se sobressai ao sexo masculino, totalizando 4715 mulheres infectadas. Com relação a idade dos indivíduos contaminados, a média é 42 anos e o desvio-padrão é 15 anos, a pessoa mais jovem a contrair a doença tem 0 anos e a mais idosa 105 anos.
+Os números apresentados a partir daqui são referentes ao dataset resultante após a limpeza e organização dos dados. Do total de 8341 casos confirmados, 94.75\% das pessoas se recuperaram. O número de casos no sexo feminino se sobressai ao sexo masculino, totalizando 4759 mulheres infectadas. Com relação a idade dos indivíduos contaminados, a média é 42 anos e o desvio-padrão é 15 anos, a pessoa mais jovem a contrair a doença tem 0 anos e a mais idosa 99 anos.
 
 % questao 5, 6
 
-O bairro com maior incidência de casos é o Cidade Nova. Os três bairros com maior número de recuperados são: Cidade Nova (371), São José Operário (321) e Flores (314). A Tabela \ref{tab1} apresenta a quantidade de testes de cada tipo e a porcentagem de cada um deles com relação ao total de 49354 testes realizados. Observa-se que o teste Anticorpo foi o mais utilizado e o IGG, o menos utilizado.
+O bairro com maior incidência de casos é o Cidade Nova. Os três bairros com maior número de recuperados são: Cidade Nova (368), São José Operário (294) e Flores (311). A Tabela \ref{tab1} apresenta a quantidade de testes de cada tipo e a porcentagem de cada um deles com relação ao total de 49128 testes realizados. Observa-se que o teste Anticorpo foi o mais utilizado e o IGG, o menos utilizado.
 
 % questao 7
 \begin{table}[h]\footnotesize
@@ -60,16 +60,16 @@ O bairro com maior incidência de casos é o Cidade Nova. Os três bairros com m
 	\begin{tabular}{|l|c|c|}
 		\hline
 	\textbf{Tipo de Teste}	& \textbf{Quantidade}  & \textbf{Porcentagem em relação ao total (\%)}  \\ \hline
-	PCR	& 11699 & 23.7\\ \hline
-	Anticorpo	& 31656  & 64.14 \\ \hline
-	Antigeno	& 5905 & 11.96  \\ \hline
-	IGM	& 76 & 0.15 \\ \hline
-	IGG	& 18 & 0.03 \\ \hline
+	PCR	& 11506 & 23.42\\ \hline
+	Anticorpo	& 31626  & 64.37 \\ \hline
+	Antigeno	& 5912 & 12.03  \\ \hline
+	IGM	& 67 & 0.13 \\ \hline
+	IGG	& 17 & 0.03 \\ \hline
 	\end{tabular}
 	\label{tab1}
 \end{table}
 
-A taxa de letalidade calculada a partir da fração de óbitos pelo total de casos confirmados é de 5.13\%. O cálculo da correlação entre a idade e o número de casos resultou em -0.2329, uma correlação negativa fraca.
+A taxa de letalidade calculada a partir da fração de óbitos pelo total de casos confirmados é de 5.25\%. O cálculo da correlação entre a idade e o número de casos resultou em -0.2151, uma correlação negativa fraca.
 
 
 \section{Visualização de Dados}
@@ -94,12 +94,12 @@ Analisando a Figura \ref{fig:seção_2.2_questão_2}, representando o \textit{bo
 \end{figure}
 
 %Questão 3
-A Figura \ref{fig:seção_2.2_questão_3} é um gráfico de barras que informa a quantidade de casos entre os períodos 03/08/2020 a 12/08/2020, mas após a limpeza dos dados, apenas duas datas foram consideradas, são elas: 04/08/2020 e 09/08/2020. A Figura \ref{fig:seção_2.2_questão_3} informa que, dentre as datas, o dia 04 foi a data com mais ocorrências (com 2 casos confirmados de COVID-19).
+A Figura \ref{fig:seção_2.2_questão_3} é um gráfico de barras que informa a quantidade de casos entre os períodos 03/08/2020 a 12/08/2020, mas após a limpeza dos dados, apenas a data 04/08/2020 foi considerada. A Figura \ref{fig:seção_2.2_questão_3} informa que no dia 04 houve 2 casos confirmados de COVID-19.
 
 \begin{figure}[!ht]
   \centering
     \includegraphics[width=.5\linewidth]{Figuras/numero_de_casos_nos_ultimos_10_dias.png} \\
-  \caption{Porcentagem de casos por bairros.}
+  \caption{Datas com casos nos últimos 10 dias.}
   \label{fig:seção_2.2_questão_3}
 \end{figure}
 
@@ -139,14 +139,13 @@ A Figura \ref{fig:seção_2.2_questão_7} apresentada a quantidade de casos por 
 \section{Tipos de Tarefas}
 %Questão 1
 
-Considerando a grande demanda de teste para a Covid-19 e o número insuficientes de testes disponíveis, umas das formas de prevenir a contaminação de outras pessoas seria levar em consideração os sintomas dos pacientes que ainda não puderam ser testados colocando-os em observação e isolamento preventivo, onde o atributo-alvo é a Classificação, para tentar prever a possibilidade uma pessoa estar contaminada ou não. Para isso seriam levados em consideração os atributos relacionados aos sintomas que o paciente apresenta como: \_sintoma\_garganta; \_sintoma\_dispneia;\_sintoma\_febre;\_sintoma\_tosse;\_sintoma\_outros;. Como métrica de desempenho a utilização da Revocação é a mais recomendada por se tratar de um diagnóstico médico visando prever uma pessoa possivelmente contaminada. O tipo de validação do modelo pode ser o K-Fold devido á grande quantidade de dados, a possibilidade de múltiplos testes e também a necessidade dos resultados do modelo serem o mais realístico possível, evitando diagnósticos incorretos.
+Considerando a grande demanda de teste para a COVID-19 e o número insuficientes de testes disponíveis, uma das formas de prevenir a contaminação de outras pessoas seria levar em consideração os sintomas dos pacientes que ainda não puderam ser testados colocando-os em observação e isolamento preventivo, onde o atributo-alvo é a Classificação, para tentar prever a possibilidade de uma pessoa estar contaminada ou não. Para isso seriam levados em consideração os atributos relacionados aos sintomas que o paciente apresenta como: sintoma\_garganta; sintoma\_dispneia; sintoma\_febre; sintoma\_tosse; sintoma\_outros. Como métrica de desempenho a utilização da Revocação é a mais recomendada por se tratar de um diagnóstico médico visando prever uma pessoa possivelmente contaminada. O tipo de validação do modelo pode ser o K-Fold devido a grande quantidade de dados, a possibilidade de múltiplos testes e também a necessidade de os resultados do modelo serem o mais realístico possível, evitando diagnósticos incorretos.
 
 % Questão 2
-O crescente número de mortos pela Covid-19 tem criado uma crise no sistema funerário, visto que muitas agências funerárias e cemitérios não estavam preparados para um cenário tão catastrófico como esse. Para evitar o problema de falta de caixões, covas etc., a regressão poderia ser utilizada para prever o número de mortos previstos para que os agentes funerários estejam preparados e todos tenham um sepultamento digno e sem frustrações. Os atributos preditores podem ser a data de notificação, data de óbito e a evolução da doença, fazendo uma projeção do crescimento do número de mortes em um determinado tempo no futuro.
+O crescente número de mortos pela COVID-19 tem criado uma crise no sistema funerário, visto que muitas agências funerárias e cemitérios não estavam preparados para um cenário tão catastrófico como esse. Para evitar o problema de falta de caixões, covas, etc., a regressão poderia ser utilizada para prever o número de mortos previstos para que os agentes funerários estejam preparados e todos tenham um sepultamento digno e sem frustrações. Os atributos preditores podem ser a data de notificação, data de óbito e a evolução da doença, fazendo uma projeção do crescimento do número de mortes num determinado tempo no futuro.
 
 %3. Bônus: Qual tarefa de Aprendizado Não-Supervisionado poderia ser concebida neste contexto?
-
-Na Aprendizagem supervisionado poderíamos ter como resultados a categorização dos elementos em faixas etárias, com crianças, adolescentes, adultos e idosos, sendo possível visualizar o tamanho de cada grupo.
+No Aprendizado Não-Supervisionado poderíamos ter como resultados a categorização dos elementos em faixas etárias, com os seguintes grupos: crianças, adolescentes, adultos e idosos, sendo possível visualizar o tamanho de cada grupo.
 
 %\bibliographystyle{sbc}
 %\bibliography{sbc-template}
